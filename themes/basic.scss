@@ -1,19 +1,52 @@
-@import './highlightjs/monokai_sublime.css';
+@import '../node_modules/normalize.css/normalize.css';
+@import '../node_modules/highlight.js/styles/monokai_sublime.css';
 
 body {
   background: #f0f0ea;
+  margin: 0;
+  padding: 0;
+
+  font-family: 'Tahoma', sans-serif;
 }
 
 pre.slides {
   display: none;
 }
 
-article.slide-pack {
-  section {
-    display: none;
+// Sizing
+
+.slide code {
+  min-width: 600px;
+}
+
+.flex .slide {
+  height: 600px;
+}
+
+.slide {
+  text-align: center;
+
+  ul li,
+  code {
+    text-align: left;
   }
 
-  section.active {
-    display: block;
+  code {
+    font-family: 'Menlo', 'Monaco', 'Consolas', monospace;
   }
+}
+
+.flex {
+  .slide {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+// Activation. 
+
+.slide:not(.active) {
+  display: none;
 }
