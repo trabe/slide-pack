@@ -1,26 +1,18 @@
 @import '../node_modules/normalize.css/normalize.css';
 @import '../node_modules/highlight.js/styles/monokai_sublime.css';
+@import './sizing';
 
 body {
   background: #f0f0ea;
   margin: 0;
   padding: 0;
 
-  font-family: 'Tahoma', sans-serif;
+  font-family: 'Helvetica', sans-serif;
 }
+
 
 pre.slides {
   display: none;
-}
-
-// Sizing
-
-.slide code {
-  min-width: 600px;
-}
-
-.flex .slide {
-  height: 600px;
 }
 
 .slide {

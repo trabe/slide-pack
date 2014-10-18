@@ -1,16 +1,10 @@
+#
+# Remove the HTML escaping in the markdown library by hand
+# (yeah, go to node_modules and fix the shit).
+#
+# https://github.com/evilstreak/markdown-js/issues/219
+#
 markdown = require('markdown').markdown
-
-#
-# Used as a workaround to fix markdown-js HTML escaping madness.
-#
-# See: https://github.com/evilstreak/markdown-js/issues/219
-#
-htmlDecode = (text) ->
-  text.replace(/&amp;/g, '&')
-    .replace(/&lt;/g, '<')
-    .replace(/&gt;/g, '>')
-    .replace(/&quot;/g, '"' )
-    .replace(/&#39;/g, "'")
 
 isNewSlideMark = (node) ->
   node && node[0] == "para" && node[1].indexOf('--') == 0
@@ -48,7 +42,7 @@ slider = (md) ->
 # stops encoding HTML shit
 generateSlide = (slide) ->
   cssClass : slide.slideClass
-  html : htmlDecode markdown.renderJsonML markdown.toHTMLTree(slide)
+  html : markdown.renderJsonML markdown.toHTMLTree(slide)
 
 slidePackProcessor = do ->
 

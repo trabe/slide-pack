@@ -1,0 +1,54 @@
+/*
+ * Sizing
+ *
+ * TODO ...
+ */
+
+
+body {
+  font-size: 100%;
+}
+
+.slide ul li,
+.slide p {
+  font-size: 1.1em;
+  line-height: 1.3em;
+}
+
+.slide-pack {
+  padding: 0 5%;
+}
+
+$widths: 768px, 992px, 1200px;
+
+.slide pre {
+  width: 100%;
+}
+
+@each $w in $widths  {
+  @media (min-width: $w) {
+    body {
+      /* from 1em to 1.6em */
+      font-size: 1em + 0.6em * $w / 1200px;
+    }
+
+    .slide pre {
+      width: 88%;
+      max-width: 800px;
+    }
+
+    .slide p {
+      max-width: 60%;
+    }
+  }
+}
+
+$heights: 768px, 1000px;
+
+@each $h in $heights  {
+  @media (min-height: $h) {
+    .flex .slide {
+      height: $h * 0.95;
+    }
+  }
+}

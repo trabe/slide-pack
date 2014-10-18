@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="../dist/basic.css">
   </head>
   <body>
-    <pre class="slides">
+
+<pre class="slides">
 -- front-page
 
 # SlidePack FYP
@@ -21,7 +23,26 @@
 
 --
 
-# With syntax highlight support!
+    &lt;!DOCTYPE html&gt;
+    &lt;html&gt;
+      &lt;head&gt;
+        &lt;meta name=&quot;viewport&quot;
+          content=&quot;width=device-width, initial-scale=1&quot;&gt;
+        &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot;
+          href=&quot;../dist/basic.css&quot;&gt;
+      &lt;/head&gt;
+      &lt;body&gt;
+
+    &lt;pre class=&quot;slides&quot;&gt;
+    # Markdown here!
+    &lt;/pre&gt;
+        &lt;script src=&quot;../dist/bundle.js&quot;&gt;&lt;/script&gt;
+      &lt;/body&gt;
+    &lt;/html&gt;
+
+--
+
+# With syntax highlight support
 
     /* lol */
     function test() {
@@ -44,7 +65,15 @@
       void lol();
     }
 
-    </pre>
+--
+
+# Mobile-first
+
+* Looks OK in a mobile browser
+* Progressive enhancement FTW
+
+
+</pre>
     <script src="../dist/bundle.js"></script>
   </body>
 </html>
