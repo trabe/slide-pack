@@ -1,16 +1,18 @@
 gulp = require 'gulp'
 
-gutil       = require 'gulp-util'
-del         = require 'del'
-concat      = require 'gulp-concat'
-coffee      = require 'gulp-coffee'
-coffeelint  = require 'gulp-coffeelint'
-browserify  = require 'browserify'
-coffeeify   = require 'coffeeify'
-watchify    = require 'watchify' 
-source      = require 'vinyl-source-stream'
-sass        = require 'gulp-sass'
-importCss   = require 'gulp-import-css'
+gutil        = require 'gulp-util'
+del          = require 'del'
+concat       = require 'gulp-concat'
+coffee       = require 'gulp-coffee'
+coffeelint   = require 'gulp-coffeelint'
+browserify   = require 'browserify'
+coffeeify    = require 'coffeeify'
+watchify     = require 'watchify'
+source       = require 'vinyl-source-stream'
+sass         = require 'gulp-sass'
+importCss    = require 'gulp-import-css'
+autoprefixer = require 'gulp-autoprefixer'
+uglify       = require 'gulp-uglify'
 
 gulp.task 'lint', ->
   gulp.src 'src/*.coffee'
@@ -26,9 +28,10 @@ gulp.task 'build:styles', ['clean:styles'], ->
     .pipe sass
         onError: (e) -> console.log e
     .pipe importCss()
+    .pipe autoprefixer("last 2 versions", "> 1%", "ie 10")
     .pipe gulp.dest 'dist'
 
-gulp.task 'build:styles:watch', ->
+gulp.task 'build:styles:watch', ['build:styles'], ->
   gulp.watch ['themes/*.scss'], ['build:styles']
 
 bundleIt = (watch = false) ->
@@ -53,10 +56,14 @@ bundleIt = (watch = false) ->
   bundler.on 'update', rebundle
   rebundle()
 
-
 gulp.task 'clean:js', ->
   del 'dist/*.js',
     force: true
+
+gulp.task 'uglify', ->
+  gulp.src 'dist/*.js'
+    .pipe uglify()
+    .pipe gulp.dest 'dist'
 
 gulp.task 'build:js', ['clean:js'], -> bundleIt()
 
