@@ -31,6 +31,7 @@
   "dependencies": {
     "highlight.js": "^8.3.0",
     "markdown": "^0.5.0",
+    "mousetrap": "0.0.1",
     "zeptojs": "^1.1.4"
   }
 }

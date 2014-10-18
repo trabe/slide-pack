@@ -7,3 +7,13 @@ body {
 pre.slides {
   display: none;
 }
+
+article.slide-pack {
+  section {
+    display: none;
+  }
+
+  section.active {
+    display: block;
+  }
+}
