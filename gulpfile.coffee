@@ -10,6 +10,7 @@ coffeeify   = require 'coffeeify'
 watchify    = require 'watchify' 
 source      = require 'vinyl-source-stream'
 sass        = require 'gulp-sass'
+importCss   = require 'gulp-import-css'
 
 gulp.task 'lint', ->
   gulp.src 'src/*.coffee'
@@ -24,6 +25,7 @@ gulp.task 'build:styles', ['clean:styles'], ->
   gulp.src 'themes/*.scss'
     .pipe sass
         onError: (e) -> console.log e
+    .pipe importCss()
     .pipe gulp.dest 'dist'
 
 gulp.task 'build:styles:watch', ->
