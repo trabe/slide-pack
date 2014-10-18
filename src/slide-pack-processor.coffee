@@ -36,17 +36,11 @@ generateSlide = (slide) ->
   cssClass : slide.slideClass
   html : markdown.renderJsonML markdown.toHTMLTree(slide)
 
-fixCodeBlocks = (slide) ->
-  console.log slide
-
-
 slidePackProcessor = do ->
 
   process = (md) ->
     tree = markdown.parse(md)
     slides = slider md
-
-    (fixCodeBlocks(slide) for slide in slides)
 
     (generateSlide(slide) for slide in slides)
 
