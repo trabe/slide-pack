@@ -1,6 +1,7 @@
 gulp = require 'gulp'
 
 gutil       = require 'gulp-util'
+del         = require 'del'
 concat      = require 'gulp-concat'
 coffee      = require 'gulp-coffee'
 coffeelint  = require 'gulp-coffeelint'
@@ -8,15 +9,25 @@ browserify  = require 'browserify'
 coffeeify   = require 'coffeeify'
 watchify    = require 'watchify' 
 source      = require 'vinyl-source-stream'
-
-gulp.task 'clean:js', ->
-  del 'dist/js',
-    force: true
+sass        = require 'gulp-sass'
 
 gulp.task 'lint', ->
   gulp.src 'src/*.coffee'
     .pipe coffeelint()
     .pipe coffeelint.reporter 'default'
+
+gulp.task 'clean:styles', ->
+  del 'dist/*.css',
+    force: true
+
+gulp.task 'build:styles', ['clean:styles'], ->
+  gulp.src 'themes/*.scss'
+    .pipe sass
+        onError: (e) -> console.log e
+    .pipe gulp.dest 'dist'
+
+gulp.task 'build:styles:watch', ->
+  gulp.watch ['themes/*.scss'], ['build:styles']
 
 bundleIt = (watch = false) ->
   bundler = browserify
@@ -40,11 +51,18 @@ bundleIt = (watch = false) ->
   bundler.on 'update', rebundle
   rebundle()
 
-gulp.task 'build:js', -> bundleIt()
-gulp.task 'build:js:watch', -> bundleIt(true)
+
+gulp.task 'clean:js', ->
+  del 'dist/*.js',
+    force: true
+
+gulp.task 'build:js', ['clean:js'], -> bundleIt()
+
+gulp.task 'build:js:watch', ['clean:js'], -> bundleIt(true)
 
 
-gulp.task 'build', ['build:js']
-gulp.task 'build:watch', ['build:js:watch']
+gulp.task 'build', ['build:js', 'build:styles']
+
+gulp.task 'build:watch', ['build:js:watch', 'build:styles:watch']
 
 gulp.task 'default', ['build']
