@@ -58,6 +58,7 @@ slidePackProcessor = do ->
 
     (generateSlide(slide) for slide in slides)
 
+
   process : process
 
 module.exports = slidePackProcessor

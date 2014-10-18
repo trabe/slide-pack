@@ -1,4 +1,3 @@
-mousetrap = require 'mousetrap'
 hist = window.history
 
 ui = do ->
@@ -15,7 +14,7 @@ ui = do ->
 
     setupPager()
     installNavigationHandler()
-    setupKeyBindings()
+
     show current
 
   setupPager = ->
@@ -46,13 +45,8 @@ ui = do ->
   installNavigationHandler = ->
     window.onpopstate = handleNavigation
 
-  setupKeyBindings = ->
-    mousetrap.bind ['left', 'up', 'k', 'h'], prev
-    mousetrap.bind ['right', 'right', 'j', 'l'], next
-
-  activate = ->
-
-
   init : init
+  prev : prev
+  next : next
 
 module.exports = ui
