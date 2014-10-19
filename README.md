@@ -10,3 +10,4 @@
 * Add inlide slides editor
 * Fix mouse navigation (use left and right edges to navigate)
 * Fix print stylesheet
+* Use the example as documentation. Rename it or something
