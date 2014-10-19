@@ -5,7 +5,7 @@ $ = require 'zeptojs'
 processor = require './slide-pack-processor'
 ui = require './slide-pack-ui'
 
-$('pre.slides').each ->
+$('[data-slide-pack]').each ->
   slides = processor.process $(@).html()
 
   $article = $('<article></article>').addClass 'slide-pack'
