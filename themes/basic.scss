@@ -1,13 +1,13 @@
 @import '../node_modules/normalize.css/normalize.css';
 @import '../node_modules/highlight.js/styles/monokai_sublime.css';
 @import './sizing';
+@import './typography';
+@import './colors';
 
 body {
   background: #f0f0ea;
   margin: 0;
   padding: 0;
-
-  font-family: 'Helvetica', sans-serif;
 }
 
 
@@ -26,10 +26,6 @@ body {
   code {
     text-align: left;
   }
-
-  code {
-    font-family: 'Menlo', 'Monaco', 'Consolas', monospace;
-  }
 }
 
 
@@ -39,4 +35,5 @@ body {
   display: none;
 }
 
+@import './trabe';
 @import './print';

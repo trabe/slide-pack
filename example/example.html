@@ -3,13 +3,26 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="../dist/slide-pack.css">
+    <style>
+
+    .woods h1,
+    .woods h2,
+    .woods p {
+      color: #fff;
+      background: rgba(0, 0, 0, 0.6);
+    }
+
+    .woods p {
+      padding: 0.3em 0.5em;
+    }
+    </style>
   </head>
   <body>
 
 <pre data-slide-pack>
 -- front-page
 
-# SlidePack FYP
+# SlidePack
 
 ## A really simple slides _generator_ &amp; _viewer_
 
@@ -44,6 +57,8 @@
 
 # With syntax highlight support
 
+## Using [highlight.js](https://highlightjs.org/) with the _monokai\_sublime_ theme
+
     /* lol */
     function test() {
       console.log("LOL!");
@@ -65,6 +80,13 @@
       void lol();
     }
 
+&nbsp;
+
+    # or Ruby
+    class Loler < Troll
+      def lol; puts "LOL"; end
+    end
+
 --
 
 # Mobile-first
@@ -72,6 +94,107 @@
 * Looks OK in a mobile browser
 * Progressive enhancement FTW
 
+--
+
+# Sane font size defaults
+## More or less ^_^
+
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
+vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
+no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+-- section
+
+# SlidePack themes
+## A tale about defining some CSS classes
+
+--
+
+## SlidePack defines a series of basic CSS classes
+
+* The whole pack is an `&lt;article&gt;` with class `slide-pack`
+* Each slide is a `&lt;section&gt;` with class `slide`
+
+And that's it.
+
+--
+
+## _per-slide_ CSS classes
+
+To further customize your slides, you can apply any CSS
+class to any slide using a special syntax in the markdown
+source (_à la_ [cleaver](https://github.com/jdan/cleaver))
+
+    -- special awesome
+
+    My special, awesome slide
+    =========================
+
+    This slide will have *special* and *awesome* CSS classes
+    assigned
+
+    --
+
+    My normal, boring slide :(
+    ==========================
+
+
+--
+
+## Default classes
+
+SlidePack defines a series of default CSS classes with default stylng:
+
+* `front-page` for the front page
+* `section` for each section _"cover"_
+* `two-columns` displays lists in two columns
+* `no-bullet` removes bullets from lists
+  * use with caution when nesting lists
+* `quote` for quoting someone
+* `full-image` for a full-page image
+
+-- two-columns unbullet
+
+## This slide is "two-columns" and "no-bullet"
+
+* This is item # One
+* This is item # Two
+* This is item # Three
+* This is item # Four
+* This is item # Five
+
+--
+## _quote_ slides need special care
+
+Currently, the markdown library we use for processing
+the slides does not support blockquote marks (>).
+
+So, you have to use HTML :(
+
+    -- quote
+
+    &lt;blockquote&gt;
+      &quot;This. Is. Blockquote!&quot;
+      &lt;cite&gt;Some spartan&lt;/cite&gt;
+    &lt;/blockquote&gt;
+
+-- quote
+
+<blockquote>
+  "This. Is. Blockquote!"
+  <cite>Some spartan</cite>
+</blockquote>
+
+-- image woods
+
+![](woods.jpg)
+
+# Image and text
+## Nice!
+
+This slide uses custom styling to increase
+legibility.
 
 </pre>
     <script src="../dist/slide-pack.js"></script>

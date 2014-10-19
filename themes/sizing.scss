@@ -6,16 +6,43 @@
 
 
 body {
-  font-size: 100%;
+  font-size: 22px;
+  line-height: 1.5em;
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+}
+
+h1 {
+  font-size: 218%;
+  line-height: 1.2em;
+}
+
+h2 {
+  font-size: 164%;
+  line-height: 1.2em;
+}
+
+h3 {
+  font-size: 145%;
+  line-height: 1.2em;
+}
+
+h4 {
+  font-size: 118%;
+  line-height: 1.2em;
 }
 
 .slide ul li,
 .slide p {
-  font-size: 1.1em;
+  font-size: 1em;
   line-height: 1.3em;
 }
 
 .slide {
+  box-sizing: border-box;
   padding: 0 5%;
 }
 
@@ -25,16 +52,23 @@ $widths: 768px, 992px, 1200px;
   width: 100%;
 }
 
+.slide code {
+  line-height: 1.3em;
+}
+
 @each $w in $widths  {
   @media (min-width: $w) {
     body {
-      /* from 1em to 1.6em */
-      font-size: 1em + 0.6em * $w / 1200px;
+      font-size: 0.36em + $w / 1200px;
     }
 
     .slide pre {
       width: 88%;
       max-width: 800px;
+    }
+
+    .slide code {
+      font-size: 1em - 0.2em * $w / 1200px;
     }
 
     .slide p {
@@ -51,4 +85,21 @@ $heights: 768px, 1000px;
       height: $h * 0.95;
     }
   }
+}
+
+
+@mixin full() {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+}
+
+.slide-pack {
+  @include full;
+}
+
+.slide {
+  @include full;
 }
