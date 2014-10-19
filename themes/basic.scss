@@ -17,6 +17,10 @@ body {
 
 .slide {
   text-align: center;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
 
   ul li,
   code {
@@ -28,17 +32,11 @@ body {
   }
 }
 
-.flex {
-  .slide {
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-    justify-content: center;
-  }
-}
 
-// Activation. 
+// Activation.
 
 .slide:not(.active) {
   display: none;
 }
+
+@import './print';

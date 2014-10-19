@@ -29,7 +29,4 @@ mousetrap.bind ['right', 'down', 'j', 'l'], ui.next
 # mouse/touch navigation
 $(document).on 'click', ui.next
 
-# TODO add a flex vs noflex button or something to the ui
-$('body').addClass 'flex'
-
 hl.initHighlightingOnLoad()

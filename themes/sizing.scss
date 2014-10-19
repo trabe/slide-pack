@@ -15,7 +15,7 @@ body {
   line-height: 1.3em;
 }
 
-.slide-pack {
+.slide {
   padding: 0 5%;
 }
 
@@ -47,7 +47,7 @@ $heights: 768px, 1000px;
 
 @each $h in $heights  {
   @media (min-height: $h) {
-    .flex .slide {
+    .slide {
       height: $h * 0.95;
     }
   }

@@ -1,0 +1,26 @@
+@page {
+  size: A4;
+  margin: 1cm 1.5cm;
+}
+
+@media print {
+  .slide {
+    box-sizing: border-box;
+    height: auto;
+    page-break-inside: avoid;
+    outline: 1px solid red;
+
+    &:after {
+      content: "";
+      width: 100%;
+      display: block;
+      border-bottom: 1px solid #ddd;
+    }
+  }
+
+  .slide:not(.active) {
+    display: block;
+  }
+
+  img { max-width: 100% !important;  }
+}
