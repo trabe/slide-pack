@@ -5,6 +5,11 @@ $ = require 'zeptojs'
 processor = require './slide-pack-processor'
 ui = require './slide-pack-ui'
 
+executeHooks = ->
+  if f = window._slide_pack_process_slides
+    f $('.slide')
+
+
 $('[data-slide-pack]').each ->
   slides = processor.process $(@).html()
 
@@ -15,10 +20,12 @@ $('[data-slide-pack]').each ->
       .addClass('slide')
 
     $slide.html(slide.html)
+
     $article.append $slide
 
   $('body').append $article
 
+  executeHooks()
 
 ui.init slidePack : $('.slide-pack')
 

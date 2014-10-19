@@ -196,6 +196,25 @@ So, you have to use HTML :(
 This slide uses custom styling to increase
 legibility.
 
+-- section
+
+# Power-user customization
+## Hell yeah!
+
+--
+
+Define a hook called `_slide_pack_process_slides` and
+process the slides as you see fit.  Remember to declare
+the hook before you insert the `slide-pack` Javascript file.
+
+    &lt;script&gt;
+    var _slide_pack_process_slides = function ($slides) {
+      // $slides is a Zepto.js wrapper
+      $slide.wrap('&lt;div class=&quot;woo&quot;&gt;&lt;/div&gt;');
+    }
+    &lt;/script&gt;
+    &lt;script src=&quot;../dist/slide-pack.js&quot;&gt;&lt;/script&gt;
+
 </pre>
     <script src="../dist/slide-pack.js"></script>
   </body>
