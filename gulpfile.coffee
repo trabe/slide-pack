@@ -13,6 +13,8 @@ sass         = require 'gulp-sass'
 importCss    = require 'gulp-import-css'
 autoprefixer = require 'gulp-autoprefixer'
 uglify       = require 'gulp-uglify'
+rename       = require 'gulp-rename'
+minifyCss    = require 'gulp-minify-css'
 
 gulp.task 'lint', ->
   gulp.src 'src/*.coffee'
@@ -24,11 +26,12 @@ gulp.task 'clean:styles', ->
     force: true
 
 gulp.task 'build:styles', ['clean:styles'], ->
-  gulp.src 'themes/*.scss'
+  gulp.src 'themes/basic.scss'
     .pipe sass
         onError: (e) -> console.log e
     .pipe importCss()
     .pipe autoprefixer("last 2 versions", "> 1%", "ie 10")
+    .pipe rename 'slide-pack.css'
     .pipe gulp.dest 'dist'
 
 gulp.task 'build:styles:watch', ['build:styles'], ->
@@ -50,7 +53,7 @@ bundleIt = (watch = false) ->
   rebundle = ->
     bundler.bundle()
       .on('error', gutil.log.bind(gutil, 'Browserify error'))
-      .pipe source 'bundle.js'
+      .pipe source 'slide-pack.js'
       .pipe gulp.dest 'dist'
 
   bundler.on 'update', rebundle
@@ -62,15 +65,26 @@ gulp.task 'clean:js', ->
 
 gulp.task 'uglify', ->
   gulp.src 'dist/*.js'
+    .pipe rename suffix : '.min'
     .pipe uglify()
     .pipe gulp.dest 'dist'
+
+gulp.task 'minifycss', ->
+  gulp.src 'dist/*.css'
+    .pipe rename suffix : '.min'
+    .pipe minifyCss()
+    .pipe gulp.dest 'dist'
+
 
 gulp.task 'build:js', ['clean:js'], -> bundleIt()
 
 gulp.task 'build:js:watch', ['clean:js'], -> bundleIt(true)
 
+gulp.task 'minify', ['uglify', 'minifycss']
 
 gulp.task 'build', ['build:js', 'build:styles']
+
+gulp.task 'clean', ['clean:js', 'clean:styles']
 
 gulp.task 'build:watch', ['build:js:watch', 'build:styles:watch']
 
