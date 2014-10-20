@@ -1,6 +1,14 @@
 # SlidePack
 ## Simple slides _generator_ & _viewer_
 
+* el conceto
+  * la estrutura
+* lo sintasis
+  * lo normal
+  * lo especial
+* temificación
+* powerusando
+
 ### TODO
 
 * Complete this README :) Add info about markdown syntax (slide separator _à la_ cleaver, automatic syntax highlight, HTML escaping, etc.)
