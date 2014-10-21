@@ -19,3 +19,6 @@
 * Fix mouse navigation (use left and right edges to navigate)
 * Fix print stylesheet
 * Use the example as documentation. Rename it or something
+* Use a customized highlight.js package
+* Allow setting an explicit language for code blocks
+* Add (optional) visual controls for navigation, page number, etc.
