@@ -1,4 +1,5 @@
-hist = window.history
+hist         = window.history
+slide_prefix = '#slide-'
 
 ui = do ->
 
@@ -37,10 +38,18 @@ ui = do ->
 
   navigate = ->
     show current
-    hist.pushState current : current, "Slide #{current} / #{max}", "#/#{current}"
+    hist.pushState current : current, "Slide #{current} / #{max}", "#{slide_prefix}#{current}"
 
   handleNavigation = (event) ->
-    show event.state.current
+    if event.state
+      # pushState/replaceState
+      show event.state.current
+    else
+      # page load. TODO: Decide if act different on links (i.e: save history)
+      page = (Number) window.location.hash.replace(slide_prefix,'')
+      if(current = page)
+        show current
+
 
   installNavigationHandler = ->
     window.onpopstate = handleNavigation
