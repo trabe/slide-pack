@@ -1,4 +1,5 @@
-hist = window.history
+hist         = window.history
+slide_prefix = '#slide-'
 
 ui = do ->
 
@@ -37,10 +38,16 @@ ui = do ->
 
   navigate = ->
     show current
-    hist.pushState current : current, "Slide #{current} / #{max}", "#/#{current}"
+    hist.pushState current : current, "Slide #{current} / #{max}", "#{slide_prefix}#{current}"
 
   handleNavigation = (event) ->
-    show event.state.current
+    if event.state
+      # pushState/replaceState
+      show event.state.current
+    else
+      # page load
+      current = (Number) window.location.hash.replace(slide_prefix,'')
+      show(current) if current
 
   installNavigationHandler = ->
     window.onpopstate = handleNavigation
