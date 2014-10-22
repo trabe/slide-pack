@@ -4,11 +4,23 @@
   p, li, blockquote {
     color: $color;
   }
+
+  @media print {
+    p, li, blockquote {
+      color: #555;
+    }
+  }
 }
 
 @mixin headingsColor($color) {
   h1, h2, h3, h4, h5, h6 {
     color: $color;
+  }
+
+  @media print {
+    h1, h2, h3, h4, h5, h6 {
+      color: #111;
+    }
   }
 }
 
@@ -61,21 +73,23 @@ cite {
   font-size: 0.8em;
 }
 
-.image img {
-  min-height: 100%;
-  min-width: 1024px;
+@media screen {
+  .full-image img {
+    min-height: 100%;
+    min-width: 1024px;
 
-  width: 100%;
-  height: auto;
+    width: 100%;
+    height: auto;
 
-  position: fixed;
-  top: 0;
-  left: 0;
-}
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
 
-.image {
-  * { z-index: 10 };
-  img { z-index: 0 };
+  .full-image {
+    * { z-index: 10 };
+    img { z-index: 0 };
+  }
 }
 
 p {
