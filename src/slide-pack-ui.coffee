@@ -32,6 +32,17 @@ ui = do ->
     current = 1 if current > max
     navigate()
 
+  move = (event) ->
+    #Handle touch-device moves
+    #If there's exactly one finger inside this element
+    if event.targetTouches.length == 1
+      touch = event.targetTouches[0];
+      # Place element where the finger is
+      obj.style.left = touch.pageX + 'px';
+      obj.style.top = touch.pageY + 'px';
+  }
+}, false);
+
   show = (to) ->
     $slidePack.find('section.active').removeClass 'active'
     $slidePack.find('section').eq(to - 1).addClass 'active'
@@ -45,14 +56,13 @@ ui = do ->
       # pushState/replaceState
       show event.state.current
     else
-      # page load. TODO: Decide if act different on links (i.e: save history)
-      page = (Number) window.location.hash.replace(slide_prefix,'')
-      if(current = page)
-        show current
-
+      # page load
+      current = (Number) window.location.hash.replace(slide_prefix,'')
+      show(current) if current
 
   installNavigationHandler = ->
     window.onpopstate = handleNavigation
+    window.onclick    = checkIf
 
   init : init
   prev : prev
