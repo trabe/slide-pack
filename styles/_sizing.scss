@@ -1,8 +1,3 @@
-/*
- * Sizing
- */
-
-
 body {
   font-size: 22px;
   line-height: 1.5em;
@@ -33,24 +28,24 @@ h4 {
   line-height: 1.2em;
 }
 
-.slide ul li,
-.slide p {
+section ul li,
+section p {
   font-size: 1em;
   line-height: 1.3em;
 }
 
-.slide {
+section {
   box-sizing: border-box;
   padding: 0 5%;
 }
 
 $widths: 768px, 992px, 1200px;
 
-.slide pre {
+section pre {
   width: 100%;
 }
 
-.slide code {
+section code {
   line-height: 1.3em;
 }
 
@@ -60,18 +55,35 @@ $widths: 768px, 992px, 1200px;
       font-size: 0.36em + $w / 1200px;
     }
 
-    .slide pre {
-      width: 88%;
-      max-width: 800px;
+    $maxWidth: 800px;
+
+    section {
+      pre {
+        width: 88%;
+        max-width: $maxWidth;
+      }
+
+      pre code {
+        font-size: 1em - 0.2em * $w / 1200px;
+      }
+
+      & > ul,
+      & > ol {
+        list-style-position: inside;
+        max-width: 60%;
+        padding-left: 0;
+
+        ul,
+        ol {
+          padding-left: 2em;
+        }
+      }
+
+      & > p {
+        max-width: 60%;
+      }
     }
 
-    .slide code {
-      font-size: 1em - 0.2em * $w / 1200px;
-    }
-
-    .slide p {
-      max-width: 60%;
-    }
   }
 }
 
@@ -79,7 +91,7 @@ $heights: 768px, 1000px;
 
 @each $h in $heights  {
   @media (min-height: $h) {
-    .slide {
+    section {
       height: $h * 0.95;
     }
   }
@@ -94,10 +106,10 @@ $heights: 768px, 1000px;
   bottom: 0;
 }
 
-.slide-pack {
+article {
   @include full;
 }
 
-.slide {
+section {
   @include full;
 }

@@ -21,7 +21,7 @@
   <body>
 
 <pre data-slide-pack>
--- front-page
+--
 
 # SlidePack
 
@@ -56,9 +56,17 @@
 
 --
 
+# Defining slides
+
+1. Star each slide with `--`
+2. Write some markdown
+3. Done
+
+--
+
 # With syntax highlight support
 
-## Using [highlight.js](https://highlightjs.org/) with the _monokai\_sublime_ theme
+Using [highlight.js](https://highlightjs.org/) with the _monokai\_sublime_ theme
 
     /* lol */
     function test() {
@@ -112,16 +120,16 @@ no sea takimata sanctus est Lorem ipsum dolor sit amet.
 
 --
 
-## SlidePack defines a series of basic CSS classes
+# SlidePack defines a very simple HTML structure
 
-* The whole pack is an `&lt;article&gt;` with class `slide-pack`
-* Each slide is a `&lt;section&gt;` with class `slide`
+* The whole pack is an `&lt;article&gt;`
+* Each slide is a `&lt;section&gt;` inside the `&lt;article&gt;`
 
 And that's it.
 
 --
 
-## _per-slide_ CSS classes
+# _per-slide_ CSS classes
 
 To further customize your slides, you can apply any CSS
 class to any slide using a special syntax in the markdown
@@ -143,21 +151,23 @@ source (_à la_ [cleaver](https://github.com/jdan/cleaver))
 
 --
 
-## Default classes
+# Default classes
 
-SlidePack defines a series of default CSS classes with default stylng:
+SlidePack defines a series of CSS classes (or selectors)
+with default styling:
 
-* `front-page` for the front page
-* `section` for each section _"cover"_
+* `section:first-child` for the first slide
+* `section:last-child` for the last slide
+* `section` for each section _"cover"_ (yeah, this is confusing...)
 * `two-columns` displays lists in two columns
 * `no-bullet` removes bullets from lists
   * use with caution when nesting lists
 * `quote` for quoting someone
 * `full-image` for a full-page image
 
--- two-columns unbullet
+-- two-columns no-bullet
 
-## This slide is "two-columns" and "no-bullet"
+## This slide is `two-columns` and `no-bullet`
 
 * This is item # One
 * This is item # Two
@@ -197,12 +207,56 @@ So, you have to use HTML :(
 This slide uses custom styling to increase
 legibility.
 
+
 -- section
 
-# Power-user customization
-## Hell yeah!
+# Customization
 
 --
+
+# Custom styles
+
+SlidePack uses a default theme wich can be extended
+using your own stylesheet. Just add it to the HTML,
+like this:
+
+    &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;&hellip;&quot;&gt;
+
+If you have problems getting your styles to work,
+remember to check selector specificity!
+
+--
+
+# Remember
+
+SlidePack is (almost) plain old HTML, so you can
+use inline styles, javacript,&hellip; whatever! :D
+
+--
+
+# Total override
+
+The default SlidePack theme is constrained like this:
+
+    :not([class~=override]) {
+    // theme styles here!
+    }
+
+So, you can disable it like this:
+
+    &lt;!-- add &quot;override&quot; as a CSS class to the html tag --&gt;
+    &lt;html class=&quot;override&quot;&gt;
+    &hellip;
+
+And even the whole SlidePack styles:
+
+    &lt;!-- remove the link to the stylesheet! :D --&gt;
+    &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;slide-pack.css&quot;&gt;
+
+
+--
+
+# Power user
 
 Define a hook called `_slide_pack_process_slides` and
 process the slides as you see fit.  Remember to declare
@@ -210,11 +264,17 @@ the hook before you insert the `slide-pack` Javascript file.
 
     &lt;script&gt;
     var _slide_pack_process_slides = function ($slides) {
-      // $slides is a Zepto.js wrapper
-      $slide.wrap('&lt;div class=&quot;woo&quot;&gt;&lt;/div&gt;');
+      // $slides is a Zepto.js wrapper containing all the slides
+      $slides.wrap('&lt;div class=&quot;woodoo&quot;&gt;&lt;/div&gt;');
     }
     &lt;/script&gt;
-    &lt;script src=&quot;../dist/slide-pack.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;slide-pack.js&quot;&gt;&lt;/script&gt;
+
+--
+
+# That's it!
+
+Thank you for watching ;)
 
 </pre>
     <script src="../dist/slide-pack.js"></script>

@@ -4,11 +4,11 @@
 }
 
 @media print {
-  .slide-pack {
+  article {
     position: relative;
   }
 
-  .slide {
+  section {
     box-sizing: border-box;
     height: auto;
     page-break-inside: avoid;
@@ -24,13 +24,13 @@
     }
   }
 
-  .slide:not(.active) {
+  section:not(.active) {
     display: block;
   }
 
   img { max-width: 100% !important;  }
 
-  .slide code {
+  section code {
     font-size: 10pt !important;
   }
 }

@@ -15,6 +15,7 @@ autoprefixer = require 'gulp-autoprefixer'
 uglify       = require 'gulp-uglify'
 rename       = require 'gulp-rename'
 minifyCss    = require 'gulp-minify-css'
+livereload   = require('gulp-livereload')
 
 gulp.task 'lint', ->
   gulp.src 'src/*.coffee'
@@ -25,17 +26,23 @@ gulp.task 'clean:styles', ->
   del 'dist/*.css',
     force: true
 
-gulp.task 'build:styles', ['clean:styles'], ->
-  gulp.src 'themes/basic.scss'
+buildStyles = (file) ->
+  gulp.src file
     .pipe sass
         onError: (e) -> console.log e
     .pipe importCss()
     .pipe autoprefixer("last 2 versions", "> 1%", "ie 10")
-    .pipe rename 'slide-pack.css'
     .pipe gulp.dest 'dist'
 
+gulp.task 'build:styles', ['clean:styles'], ->
+  buildStyles 'styles/slide-pack.scss'
+
 gulp.task 'build:styles:watch', ['build:styles'], ->
-  gulp.watch ['themes/*.scss'], ['build:styles']
+  gulp.watch ['styles/**/*.scss'], ['build:styles']
+
+gulp.task 'reload', ->
+  livereload.listen()
+  gulp.watch('build/**').on('change', livereload.changed)
 
 bundleIt = (watch = false) ->
   bundler = browserify
@@ -86,6 +93,6 @@ gulp.task 'build', ['build:js', 'build:styles']
 
 gulp.task 'clean', ['clean:js', 'clean:styles']
 
-gulp.task 'build:watch', ['build:js:watch', 'build:styles:watch']
+gulp.task 'build:watch', ['build:js:watch', 'build:styles:watch', 'reload']
 
 gulp.task 'default', ['build']
