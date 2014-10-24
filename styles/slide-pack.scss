@@ -1,11 +1,8 @@
 @import '../node_modules/normalize.css/normalize.css';
 @import '../node_modules/highlight.js/styles/monokai_sublime.css';
-@import './sizing';
-@import './typography';
-@import './colors';
+@import './_sizing';
 
 body {
-  background: #f0f0ea;
   margin: 0;
   padding: 0;
 }
@@ -15,14 +12,14 @@ body {
   display: none;
 }
 
-.slide {
+section {
   text-align: center;
   display: flex;
   flex-flow: column;
   align-items: center;
   justify-content: center;
 
-  ul li,
+  li,
   code {
     text-align: left;
   }
@@ -31,9 +28,9 @@ body {
 
 // Activation.
 
-.slide:not(.active) {
+section:not(.active) {
   display: none;
 }
 
-@import './trabe';
-@import './print';
+@import './_print';
+@import './themes/default/default.scss';

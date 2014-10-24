@@ -4,23 +4,33 @@
 }
 
 @media print {
-  .slide {
+  article {
+    position: relative;
+  }
+
+  section {
     box-sizing: border-box;
     height: auto;
     page-break-inside: avoid;
-    outline: 1px solid red;
+    position: relative ! important;
+    padding-bottom: 2.5em;
 
     &:after {
       content: "";
       width: 100%;
       display: block;
       border-bottom: 1px solid #ddd;
+      padding-bottom: 2.5em;
     }
   }
 
-  .slide:not(.active) {
+  section:not(.active) {
     display: block;
   }
 
   img { max-width: 100% !important;  }
+
+  section code {
+    font-size: 10pt !important;
+  }
 }

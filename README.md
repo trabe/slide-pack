@@ -22,3 +22,4 @@
 * Use a customized highlight.js package
 * Allow setting an explicit language for code blocks
 * Add (optional) visual controls for navigation, page number, etc.
+* Add a license
