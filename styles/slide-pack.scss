@@ -1,23 +1,26 @@
 @import '../node_modules/normalize.css/normalize.css';
 @import '../node_modules/highlight.js/styles/monokai_sublime.css';
-@import './_sizing';
 
-body {
-  margin: 0;
-  padding: 0;
+@import './themes/default/default.scss';
+
+// Activation.
+
+[data-slide-pack],
+[data-slide-pack-processed]{
+  display: none;
 }
 
-
-[data-slide-pack] {
-  display: none;
+article {
+  section:not(.active) {
+    display: none;
+  }
 }
 
 section {
   text-align: center;
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-  justify-content: center;
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 1em;
 
   li,
   code {
@@ -25,12 +28,4 @@ section {
   }
 }
 
-
-// Activation.
-
-section:not(.active) {
-  display: none;
-}
-
 @import './_print';
-@import './themes/default/default.scss';

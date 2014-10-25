@@ -11,13 +11,13 @@ executeHooks = ->
 
 
 $('[data-slide-pack]').each ->
-  slides = processor.process $(@).html()
+  $slidePack = $(@)
+  slides = processor.process $slidePack.html()
 
-  $article = $('<article></article>').addClass 'slide-pack'
+  $article = $('<article></article>')
   for slide in slides
     $slide = $('<section></section>')
       .addClass(slide.cssClass)
-      .addClass('slide')
 
     $slide.html(slide.html)
 
@@ -25,9 +25,14 @@ $('[data-slide-pack]').each ->
 
   $('body').append $article
 
+  # Prevent problems when saving the slides as a complete
+  # HTML page ^_^
+  $slidePack.attr('data-slide-pack-processed', '')
+  $slidePack.removeAttr('data-slide-pack')
+
   executeHooks()
 
-ui.init slidePack : $('.slide-pack')
+ui.init slidePack : $('article')
 
 # keyboard navigation
 mousetrap.bind ['left', 'up', 'k', 'h'], ui.prev
