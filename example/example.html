@@ -82,14 +82,14 @@ Using [highlight.js](https://highlightjs.org/) with the _monokai\_sublime_ theme
 
     sayHi 'John'
 
-&nbsp;
+----
 
     // Some Java too
     public interface Loler {
       void lol();
     }
 
-&nbsp;
+----
 
     # or Ruby
     class Loler < Troll
@@ -158,16 +158,16 @@ with default styling:
 
 * `section:first-child` for the first slide
 * `section:last-child` for the last slide
-* `section` for each section _"cover"_ (yeah, this is confusing...)
-* `two-columns` displays lists in two columns
-* `no-bullet` removes bullets from lists
+* `.section` class for each section _"cover"_
+* `.two-columns` class displays lists in two columns
+* `.no-bullet` class removes bullets from lists
   * use with caution when nesting lists
-* `quote` for quoting someone
-* `full-image` for a full-page image
+* `.quote` class for quoting someone
+* `.full-image` class for a full-page image
 
 -- two-columns no-bullet
 
-## This slide is `two-columns` and `no-bullet`
+## This slide is `.two-columns` and `.no-bullet`
 
 * This is item # One
 * This is item # Two
@@ -179,7 +179,7 @@ with default styling:
 ## _quote_ slides need special care
 
 Currently, the markdown library we use for processing
-the slides does not support blockquote marks (>).
+the slides does not support markdown blockquote marks (>).
 
 So, you have to use HTML :(
 
@@ -248,7 +248,7 @@ So, you can disable it like this:
     &lt;html class=&quot;override&quot;&gt;
     &hellip;
 
-And even the whole SlidePack styles:
+And you can even disable the whole SlidePack styles (careful with that axe, Eugene):
 
     &lt;!-- remove the link to the stylesheet! :D --&gt;
     &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;slide-pack.css&quot;&gt;
@@ -274,7 +274,7 @@ the hook before you insert the `slide-pack` Javascript file.
 
 # That's it!
 
-Thank you for watching ;)
+## Thank you for watching ;)
 
 </pre>
     <script src="../dist/slide-pack.js"></script>

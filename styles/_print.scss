@@ -5,7 +5,7 @@
 
 @media print {
   article {
-    position: relative;
+    position: relative ! important;
   }
 
   section {
@@ -25,7 +25,7 @@
   }
 
   section:not(.active) {
-    display: block;
+    display: block !important;
   }
 
   img { max-width: 100% !important;  }

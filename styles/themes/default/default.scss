@@ -1,56 +1,135 @@
 @import '../../../node_modules/colors.css/sass/colors.scss';
 
+@mixin textColor($color) {
+  p, li, blockquote {
+    color: $color;
+  }
+
+  @media print {
+    p, li, blockquote {
+      color: #555;
+    }
+  }
+}
+
+@mixin headingsColor($color) {
+  h1, h2, h3, h4, h5, h6 {
+    color: $color;
+  }
+
+  @media print {
+    h1, h2, h3, h4, h5, h6 {
+      color: #111;
+    }
+  }
+}
+
+@mixin full() {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+}
+
 $copy: lighten($black, 15%);
 $headings: $black;
 $codeBg: #ccc;
 
+html:not([class~=override]) {
+  font-size: 1em;
+  line-height: 1.5em;
+  margin: 0;
+
+  @media (min-width: 600px) {
+    font-size: 1.4em;
+  }
+}
 
 :not([class~=override]) {
+
   body {
     color: $copy;
     font-family: "Segoe UI", Candara, "Bitstream Vera Sans", "DejaVu Sans", "Bitstream Vera Sans", "Trebuchet MS", Verdana, "Verdana Ref", sans-serif;
-  }
-
-  section :not(pre) code {
-    background: $codeBg;
   }
 
   code {
     font-family: 'Menlo', 'Monaco', 'Consolas', monospace;
   }
 
+  article {
+    @include full;
+  }
+
+  section {
+    @include full;
+  }
+
+  section :not(pre) code {
+    background: $codeBg;
+  }
+
   h1, h2, h3, h4, h5, h6 {
     color: $headings;
+    font-weight: normal;
   }
 
-  @mixin textColor($color) {
-    p, li, blockquote {
-      color: $color;
-    }
+  h1 {
+    font-size: 2.18rem;
+    line-height: 1.2em;
+  }
 
-    @media print {
-      p, li, blockquote {
-        color: #555;
-      }
+  h2 {
+    font-size: 1.64rem;
+    line-height: 1.2em;
+  }
+
+  h3 {
+    font-size: 1.45rem;
+    line-height: 1.2em;
+  }
+
+  h4, h5, h6 {
+    font-size: 1.18rem;
+    line-height: 1.2em;
+  }
+
+  section {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+    padding: 0 5%;
+    max-width: 100%;
+  }
+
+
+  pre {
+    width: 100%;
+
+    code {
+      font-size: 0.75rem;
+      line-height: 1.3em;
     }
   }
 
-  @mixin headingsColor($color) {
-    h1, h2, h3, h4, h5, h6 {
-      color: $color;
-    }
+  li,
+  p {
+    font-size: 1rem;
+    line-height: 1.4em;
+  }
 
-    @media print {
-      h1, h2, h3, h4, h5, h6 {
-        color: #111;
-      }
-    }
+  p {
+    text-align: left;
   }
 
   // Front page
   section:first-child {
     background: $blue;
     @include headingsColor($white);
+    @include textColor($white);
 
     h1 {
       font-size: 300%;
@@ -72,7 +151,9 @@ $codeBg: #ccc;
 
   .section {
     background: $orange;
+
     @include headingsColor($white);
+    @include textColor($white);
 
     h1 {
       font-weight: bold;
@@ -129,7 +210,27 @@ $codeBg: #ccc;
     }
   }
 
-  p {
-    text-align: justify;
+
+  @media (min-width: 600px) {
+    section {
+      h1, h2, h3, h4, h5, h6,
+      & > p,
+      & > pre,
+      & > ul,
+      & > ol {
+        max-width: 800px;
+      }
+
+      & > ul,
+      & > ol {
+        list-style-position: inside;
+        padding-left: 0;
+
+        ul,
+        ol {
+          padding-left: 2em;
+        }
+      }
+    }
   }
 }
