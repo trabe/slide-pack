@@ -25,6 +25,11 @@ $('[data-slide-pack]').each ->
 
   $('body').append $article
 
+  # Prevent problems when saving the slides as a complete
+  # HTML page ^_^
+  $slidePack.attr('data-slide-pack-processed', '')
+  $slidePack.removeAttr('data-slide-pack')
+
   executeHooks()
 
 ui.init slidePack : $('article')

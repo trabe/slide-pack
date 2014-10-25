@@ -5,7 +5,8 @@
 
 // Activation.
 
-[data-slide-pack] {
+[data-slide-pack],
+[data-slide-pack-processed]{
   display: none;
 }
 
