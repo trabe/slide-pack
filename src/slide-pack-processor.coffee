@@ -1,53 +1,45 @@
-#
-# Remove the HTML escaping in the markdown library by hand
-# (yeah, go to node_modules and fix the shit).
-#
-# https://github.com/evilstreak/markdown-js/issues/219
-#
-markdown = require('markdown').markdown
+markdown = require('marked')
 
 isNewSlideMark = (node) ->
-  node && node[0] == "para" && node[1].indexOf('--') == 0
+  node && node.type == "paragraph" && node.text.indexOf('--') == 0
 
 getSlideClass = (node) ->
-  node[1].substr 3
+  node.text.substr 3
 
-doChop = (slides, tree) ->
-  return slides if tree.length == 0
+doChop = (slides, tokens) ->
+  return slides if tokens.length == 0
 
-  slide = ['markdown']
+  slide = []
+  slide.links = {} # TODO WTF!?
 
-  node = tree.shift()
+  node = tokens.shift()
   if isNewSlideMark(node)
     slide.slideClass = getSlideClass(node)
 
-  while node = tree.shift()
+  while node = tokens.shift()
     if isNewSlideMark(node)
-      tree.unshift(node)
+      tokens.unshift(node)
       break
     else
       slide.push node
 
   slides.push slide
-  doChop slides, tree
+  doChop slides, tokens
 
-chop = (tree) ->
-  doChop [], tree.slice(1)
+chop = (tokens) ->
+  doChop [], tokens
 
 slider = (md) ->
-  tree = markdown.parse md, 'Maruku'
-  chop tree
+  tokens = markdown.lexer(md)
+  chop tokens
 
-# TODO remove hmtlDecode once markdown-js
-# stops encoding HTML shit
 generateSlide = (slide) ->
   cssClass : slide.slideClass
-  html : markdown.renderJsonML markdown.toHTMLTree(slide)
+  html : markdown.parser slide
 
 slidePackProcessor = do ->
 
   process = (md) ->
-    tree = markdown.parse(md)
     slides = slider md
 
     (generateSlide(slide) for slide in slides)

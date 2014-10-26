@@ -12,7 +12,7 @@ executeHooks = ->
 
 $('[data-slide-pack]').each ->
   $slidePack = $(@)
-  slides = processor.process $slidePack.html()
+  slides = processor.process $slidePack.text()
 
   $article = $('<article></article>')
   for slide in slides
