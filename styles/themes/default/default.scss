@@ -40,6 +40,7 @@ html:not([class~=override]) {
   font-size: 1em;
   line-height: 1.5em;
   margin: 0;
+  background: #f0f0ea;
 
   @media (min-width: 600px) {
     font-size: 1.4em;
@@ -232,5 +233,25 @@ html:not([class~=override]) {
         }
       }
     }
+  }
+
+  table {
+    th, td {
+      line-height: 1.4em;
+      padding: .2em .5em;
+    }
+
+    thead tr:last-child th {
+      border-bottom: 2px solid $silver;
+    }
+
+    tbody tr:not(:last-child) td {
+      border-bottom: 1px solid $silver;
+    }
+  }
+
+  hr {
+    display: none;
+    border-bottom: 1px solid $gray;
   }
 }

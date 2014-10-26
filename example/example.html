@@ -11,6 +11,10 @@
         color: #fff;
         background: rgba(0, 0, 0, 0.6);
       }
+
+      .woods code {
+        color: #000;
+      }
     }
 
     .woods p {
@@ -20,8 +24,7 @@
   </head>
   <body>
 
-<pre data-slide-pack>
---
+<xmp data-slide-pack>
 
 # SlidePack
 
@@ -37,30 +40,45 @@
 
 --
 
-    &lt;!DOCTYPE html&gt;
-    &lt;html&gt;
-      &lt;head&gt;
-        &lt;meta name=&quot;viewport&quot;
-          content=&quot;width=device-width, initial-scale=1&quot;&gt;
-        &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot;
-          href=&quot;../dist/basic.css&quot;&gt;
-      &lt;/head&gt;
-      &lt;body&gt;
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css"
+          href="../dist/basic.css">
+      </head>
+      <body>
 
-    &lt;pre data-slide-pack&gt;
+    <pre data-slide-pack>
     # Markdown here!
-    &lt;/pre&gt;
-        &lt;script src=&quot;../dist/bundle.js&quot;&gt;&lt;/script&gt;
-      &lt;/body&gt;
-    &lt;/html&gt;
+    </pre>
+        <script src="../dist/bundle.js"></script>
+      </body>
+    </html>
 
 --
 
 # Defining slides
 
 1. Star each slide with `--`
-2. Write some markdown
-3. Done
+2. Write some markdown ([GFM](https://help.github.com/articles/github-flavored-markdown/) FTW!)
+3. Refresh your browser
+4. Done
+
+--
+
+# The `xmp` tag
+
+You can use any tag you like to wrap the markdown text (we used `pre` in the
+previous example)
+
+**BUT**
+
+if you are going to put some HTML code examples in
+there...
+
+you _will have_ to use [xmp](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/xmp)
 
 --
 
@@ -98,6 +116,19 @@ Using [highlight.js](https://highlightjs.org/) with the _monokai\_sublime_ theme
 
 --
 
+# You can be explicit, too
+
+Use _fenced code blocks_ to delimit your code snippets and give them a
+language identifier:
+
+    ```javascript
+    function clickHandler() {
+      alert("Hello, World!");
+    }
+    ```
+
+--
+
 # Mobile-first
 
 * Looks OK in a mobile browser
@@ -120,10 +151,10 @@ no sea takimata sanctus est Lorem ipsum dolor sit amet.
 
 --
 
-# SlidePack defines a very simple HTML structure
+# SlidePack generates a very simple HTML structure
 
-* The whole pack is an `&lt;article&gt;`
-* Each slide is a `&lt;section&gt;` inside the `&lt;article&gt;`
+* The whole pack is an `<article>`
+* Each slide is a `<section>` inside the `<article>`
 
 And that's it.
 
@@ -153,17 +184,18 @@ source (_à la_ [cleaver](https://github.com/jdan/cleaver))
 
 # Default classes
 
-SlidePack defines a series of CSS classes (or selectors)
-with default styling:
+SlidePack default styles let you target some of your slides
+using a series of CSS classes and selectors:
 
-* `section:first-child` for the first slide
-* `section:last-child` for the last slide
-* `.section` class for each section _"cover"_
-* `.two-columns` class displays lists in two columns
-* `.no-bullet` class removes bullets from lists
-  * use with caution when nesting lists
-* `.quote` class for quoting someone
-* `.full-image` class for a full-page image
+|                               | class          | selector              |
+| :-----------                  | :-----         | :--------             |
+| first slide                   |                | `section:first-child` |
+| last slide                    |                | `section:last-child`  |
+| each section _"cover"_        | `.section`     |                       |
+| displays lists in two columns | `.two-columns` |                       |
+| removes bullets from lists    | `.no-bullet`   |                       |
+| for quoting someone           | `.quote`       |                       |
+| for a full-page image         | `.full-image`  |                       |
 
 -- two-columns no-bullet
 
@@ -178,33 +210,29 @@ with default styling:
 --
 ## _quote_ slides need special care
 
-Currently, the markdown library we use for processing
-the slides does not support markdown blockquote marks (>).
 
-So, you have to use HTML :(
+If ypu want to add a `<cite>` element to your quote,
+you will have to use some HTML:
 
-    -- quote
-
-    &lt;blockquote&gt;
-      &quot;This. Is. Blockquote!&quot;
-      &lt;cite&gt;Some spartan&lt;/cite&gt;
-    &lt;/blockquote&gt;
-
+```markdown
 -- quote
 
-<blockquote>
-  "This. Is. Blockquote!"
-  <cite>Some spartan</cite>
-</blockquote>
+> "This. Is. Blockquote!"
+> <cite>Some spartan</cite>
+```
+-- quote
+
+> "This. Is. Blockquote!"
+> <cite>Some spartan</cite>
 
 -- full-image woods
 
 ![](woods.jpg)
 
-# Image and text
+# Full image background
 ## Nice!
 
-This slide uses custom styling to increase
+This slide uses `.full-image` and some custom styling to increase
 legibility.
 
 
@@ -220,7 +248,7 @@ SlidePack uses a default theme wich can be extended
 using your own stylesheet. Just add it to the HTML,
 like this:
 
-    &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;&hellip;&quot;&gt;
+    <link rel="stylesheet" type="text/css" href="…">
 
 If you have problems getting your styles to work,
 remember to check selector specificity!
@@ -230,11 +258,11 @@ remember to check selector specificity!
 # Remember
 
 SlidePack is (almost) plain old HTML, so you can
-use inline styles, javacript,&hellip; whatever! :D
+use inline styles, javascript,&hellip; whatever! :D
 
 --
 
-# Total override
+# Theme override
 
 The default SlidePack theme is constrained like this:
 
@@ -244,14 +272,18 @@ The default SlidePack theme is constrained like this:
 
 So, you can disable it like this:
 
-    &lt;!-- add &quot;override&quot; as a CSS class to the html tag --&gt;
-    &lt;html class=&quot;override&quot;&gt;
-    &hellip;
+    <!-- add "override" as a CSS class to the html tag -->
+    <html class="override">
+    …
 
-And you can even disable the whole SlidePack styles (careful with that axe, Eugene):
+--
 
-    &lt;!-- remove the link to the stylesheet! :D --&gt;
-    &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;slide-pack.css&quot;&gt;
+# Total override
+
+You can even disable the whole SlidePack styles (careful with that axe, Eugene):
+
+    <!-- remove this link to the stylesheet and you are done! :D -->
+    <link rel="stylesheet" type="text/css" href="slide-pack.css">
 
 
 --
@@ -262,13 +294,13 @@ Define a hook called `_slide_pack_process_slides` and
 process the slides as you see fit.  Remember to declare
 the hook before you insert the `slide-pack` Javascript file.
 
-    &lt;script&gt;
+    <script>
     var _slide_pack_process_slides = function ($slides) {
       // $slides is a Zepto.js wrapper containing all the slides
-      $slides.wrap('&lt;div class=&quot;woodoo&quot;&gt;&lt;/div&gt;');
+      $slides.wrap('<div class="woodoo"></div>');
     }
-    &lt;/script&gt;
-    &lt;script src=&quot;slide-pack.js&quot;&gt;&lt;/script&gt;
+    </script>
+    <script src="slide-pack.js"></script>
 
 --
 
@@ -276,7 +308,7 @@ the hook before you insert the `slide-pack` Javascript file.
 
 ## Thank you for watching ;)
 
-</pre>
+</xmp>
     <script src="../dist/slide-pack.js"></script>
   </body>
 </html>
