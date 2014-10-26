@@ -11,6 +11,10 @@
         color: #fff;
         background: rgba(0, 0, 0, 0.6);
       }
+
+      .woods code {
+        color: #000;
+      }
     }
 
     .woods p {
@@ -59,7 +63,8 @@
 
 1. Star each slide with `--`
 2. Write some markdown ([GFM](https://help.github.com/articles/github-flavored-markdown/) FTW!)
-3. Done
+3. Refresh your browser
+4. Done
 
 --
 
@@ -111,6 +116,19 @@ Using [highlight.js](https://highlightjs.org/) with the _monokai\_sublime_ theme
 
 --
 
+# You can be explicit, too
+
+Use _fenced code blocks_ to delimit your code snippets and give them a
+language identifier:
+
+    ```javascript
+    function clickHandler() {
+      alert("Hello, World!");
+    }
+    ```
+
+--
+
 # Mobile-first
 
 * Looks OK in a mobile browser
@@ -133,7 +151,7 @@ no sea takimata sanctus est Lorem ipsum dolor sit amet.
 
 --
 
-# SlidePack defines a very simple HTML structure
+# SlidePack generates a very simple HTML structure
 
 * The whole pack is an `<article>`
 * Each slide is a `<section>` inside the `<article>`
@@ -166,17 +184,18 @@ source (_à la_ [cleaver](https://github.com/jdan/cleaver))
 
 # Default classes
 
-SlidePack defines a series of CSS classes (or selectors)
-with default styling:
+SlidePack default styles let you target some of your slides
+using a series of CSS classes and selectors:
 
-* `section:first-child` for the first slide
-* `section:last-child` for the last slide
-* `.section` class for each section _"cover"_
-* `.two-columns` class displays lists in two columns
-* `.no-bullet` class removes bullets from lists
-  * use with caution when nesting lists
-* `.quote` class for quoting someone
-* `.full-image` class for a full-page image
+|                               | class          | selector              |
+| :-----------                  | :-----         | :--------             |
+| first slide                   |                | `section:first-child` |
+| last slide                    |                | `section:last-child`  |
+| each section _"cover"_        | `.section`     |                       |
+| displays lists in two columns | `.two-columns` |                       |
+| removes bullets from lists    | `.no-bullet`   |                       |
+| for quoting someone           | `.quote`       |                       |
+| for a full-page image         | `.full-image`  |                       |
 
 -- two-columns no-bullet
 
@@ -191,33 +210,29 @@ with default styling:
 --
 ## _quote_ slides need special care
 
-Currently, the markdown library we use for processing
-the slides does not support markdown blockquote marks (>).
 
-So, you have to use HTML :(
+If ypu want to add a `<cite>` element to your quote,
+you will have to use some HTML:
 
-    -- quote
-
-    <blockquote>
-      "This. Is. Blockquote!"
-      <cite>Some spartan</cite>
-    </blockquote>
-
+```markdown
 -- quote
 
-<blockquote>
-  "This. Is. Blockquote!"
-  <cite>Some spartan</cite>
-</blockquote>
+> "This. Is. Blockquote!"
+> <cite>Some spartan</cite>
+```
+-- quote
+
+> "This. Is. Blockquote!"
+> <cite>Some spartan</cite>
 
 -- full-image woods
 
 ![](woods.jpg)
 
-# Image and text
+# Full image background
 ## Nice!
 
-This slide uses custom styling to increase
+This slide uses `.full-image` and some custom styling to increase
 legibility.
 
 
@@ -243,11 +258,11 @@ remember to check selector specificity!
 # Remember
 
 SlidePack is (almost) plain old HTML, so you can
-use inline styles, javacript,&hellip; whatever! :D
+use inline styles, javascript,&hellip; whatever! :D
 
 --
 
-# Total override
+# Theme override
 
 The default SlidePack theme is constrained like this:
 
@@ -261,9 +276,13 @@ So, you can disable it like this:
     <html class="override">
     …
 
-And you can even disable the whole SlidePack styles (careful with that axe, Eugene):
+--
 
-    <!-- remove the link to the stylesheet! :D -->
+# Total override
+
+You can even disable the whole SlidePack styles (careful with that axe, Eugene):
+
+    <!-- remove this link to the stylesheet and you are done! :D -->
     <link rel="stylesheet" type="text/css" href="slide-pack.css">
 
 
