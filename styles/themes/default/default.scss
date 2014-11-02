@@ -36,7 +36,7 @@ $copy: lighten($black, 15%);
 $headings: $black;
 $codeBg: #ccc;
 
-html:not([class~=override]) {
+html:not(.override) {
   font-size: 1em;
   line-height: 1.5em;
   margin: 0;
@@ -47,7 +47,9 @@ html:not([class~=override]) {
   }
 }
 
-:not([class~=override]) {
+// html is not specified here in order to get a lower specificity selector and
+// ease the customization via additional CSS
+:not(.override) {
 
   body {
     color: $copy;
