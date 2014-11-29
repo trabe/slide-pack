@@ -43,6 +43,7 @@ gulp.task 'build:styles:watch', ['build:styles'], ->
 gulp.task 'reload', ->
   livereload.listen()
   gulp.watch('build/**').on('change', livereload.changed)
+  gulp.watch('example/**').on('change', livereload.changed)
 
 bundleIt = (watch = false) ->
   bundler = browserify

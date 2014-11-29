@@ -1,4 +1,4 @@
-@import '../../../node_modules/colors.css/sass/colors.scss';
+@import '../../../node_modules/colors.css/sass/_variables.scss';
 
 @mixin textColor($color) {
   p, li, blockquote {
@@ -56,6 +56,10 @@ html:not(.override) {
     font-family: "Segoe UI", Candara, "Bitstream Vera Sans", "DejaVu Sans", "Bitstream Vera Sans", "Trebuchet MS", Verdana, "Verdana Ref", sans-serif;
   }
 
+  h1,h2,h3 {
+    font-family: "Ubuntu";
+  }
+
   code {
     font-family: 'Menlo', 'Monaco', 'Consolas', monospace;
   }
@@ -95,6 +99,15 @@ html:not(.override) {
   h4, h5, h6 {
     font-size: 1.18rem;
     line-height: 1.2em;
+  }
+
+  a,
+  a:visited {
+    color: $blue;
+  }
+
+  a:hover {
+    color: $teal;
   }
 
   section {
@@ -195,21 +208,47 @@ html:not(.override) {
   }
 
   @media screen {
-    .full-image img {
-      min-height: 100%;
-      min-width: 1024px;
+    .full-image {
+      > * { z-index: 15 };
+      img { z-index: 0 };
 
-      width: 100%;
-      height: auto;
+      img {
+        min-height: 100%;
+        min-width: 1024px;
 
-      position: fixed;
-      top: 0;
-      left: 0;
+        width: 100%;
+        height: auto;
+
+        position: fixed;
+        top: 0;
+        left: 0;
+      }
     }
 
-    .full-image {
-      * { z-index: 10 };
-      img { z-index: 0 };
+    .full-image-overlay {
+      background: $black;
+
+      img {
+        opacity: 0.5;
+      }
+
+      * {
+        color: $white;
+        text-shadow: 0 1px 1px #000;
+      }
+
+      a,
+      code {
+        text-shadow: none;
+      }
+
+      a {
+        color: $white;
+      }
+
+      code {
+        color: $black;
+      }
     }
   }
 

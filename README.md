@@ -103,9 +103,9 @@ SlidePackjavascript.
     </script>
     <script src="slide-pack.js"></script>
 
-### TODO
+## TODO
 
-* Add inlide slides editor
+* Add inline slides editor
 * Fix mouse navigation (use left and right edges to navigate)
 * Use the example as documentation. Rename it or something
 * Add (optional) visual controls for navigation, page number, etc.

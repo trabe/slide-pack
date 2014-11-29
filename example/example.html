@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>SlidePack example</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu:400,700,400italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="../dist/slide-pack.css">
     <style>
     @media screen {
@@ -24,7 +26,9 @@
   </head>
   <body>
 
-<xmp data-slide-pack>
+<textarea data-slide-pack>
+
+--
 
 # SlidePack
 
@@ -68,17 +72,31 @@
 
 --
 
-# The `xmp` tag
+# The markdown wrapper tag
 
 You can use any tag you like to wrap the markdown text (we used `pre` in the
 previous example)
 
 **BUT**
 
-if you are going to put some HTML code examples in
-there...
+if you are going to put some HTML code examples in there...
 
-you _will have_ to use [xmp](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/xmp)
+you _will have_ to choose your tag wisely to avoid problems when writing
+_verbatim_ HTML (your examples) within _interpreted_ HTML (the page
+you are currently viewing)
+
+--
+
+# Suggested wrappers
+
+* `pre`
+* `textarea`
+* `xmp`
+
+There is no _silver-bullet-wrapper_: if you have to include a code block
+containing the wrapper, you are screwed.
+
+Sorry about that :)
 
 --
 
@@ -184,8 +202,9 @@ source (_à la_ [cleaver](https://github.com/jdan/cleaver))
 
 # Default classes
 
-SlidePack default styles let you target some of your slides
-using a series of CSS classes and selectors:
+SlidePack default theme uses some CSS classes and selectors
+to let you _tag_ some of your slides and display them in a
+specific way.
 
 |                               | class          | selector              |
 | :-----------                  | :-----         | :--------             |
@@ -211,7 +230,7 @@ using a series of CSS classes and selectors:
 ## _quote_ slides need special care
 
 
-If ypu want to add a `<cite>` element to your quote,
+If you want to add a `<cite>` element to your quote,
 you will have to use some HTML:
 
 ```markdown
@@ -227,7 +246,7 @@ you will have to use some HTML:
 
 -- full-image woods
 
-![](woods.jpg)
+![](unsplash2.jpg)
 
 # Full image background
 ## Nice!
@@ -235,6 +254,19 @@ you will have to use some HTML:
 This slide uses `.full-image` and some custom styling to increase
 legibility.
 
+<small>(Image by [Todd Quackenbush](http://500px.com/toddquackenbush))</small>
+
+-- full-image full-image-overlay
+
+![](unsplash1.jpg)
+
+# Image & overlay
+
+Adding `.full-image-overlay`, a (not so) subtle dark overlay over the original
+image, combined with a subtle text shadow, make the text _pop out_ with no need
+for custom styles.
+
+<small>(Image by [Jonas Nilsson Lee](https://unsplash.com/jonasnilssonlee))</small>
 
 -- section
 
@@ -302,13 +334,28 @@ the hook before you insert the `slide-pack` Javascript file.
     </script>
     <script src="slide-pack.js"></script>
 
+-- section
+
+# Similar projects
+
+--
+
+# remark
+
+[remark](https://remarkjs.com) is SlidePack on steroids.
+It has support for:
+
+* Templates, layouts, property expansion
+* Content specific classes for styling
+* Presenter mode (cloning + notes + upcoming slide)
+
 --
 
 # That's it!
 
 ## Thank you for watching ;)
 
-</xmp>
+</textarea>
     <script src="../dist/slide-pack.js"></script>
   </body>
 </html>
