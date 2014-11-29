@@ -1,13 +1,13 @@
 hl = require 'highlight.js'
-mousetrap = require 'mousetrap'
 $ = require 'zeptojs'
 
 processor = require './slide-pack-processor'
 ui = require './slide-pack-ui'
+require './slide-pack-navigation'
 
 executeHooks = ->
   if f = window._slide_pack_process_slides
-    f $('.slide')
+    f $('section')
 
 
 $('[data-slide-pack]').each ->
@@ -33,12 +33,5 @@ $('[data-slide-pack]').each ->
   executeHooks()
 
 ui.init slidePack : $('article')
-
-# keyboard navigation
-mousetrap.bind ['left', 'up', 'k', 'h'], ui.prev
-mousetrap.bind ['right', 'down', 'j', 'l'], ui.next
-
-# mouse/touch navigation
-$(document).on 'click', ui.next
 
 hl.initHighlightingOnLoad()
