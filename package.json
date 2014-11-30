@@ -13,6 +13,7 @@
   "license": "MIT",
   "devDependencies": {
     "browserify": "^6.1.0",
+    "browserify-shim": "^3.8.0",
     "coffee-script": "^1.8.0",
     "coffeeify": "^0.7.0",
     "colors.css": "^1.0.0",
@@ -34,7 +35,19 @@
     "mousetrap": "0.0.1",
     "normalize.css": "^3.0.2",
     "vinyl-source-stream": "^1.0.0",
-    "watchify": "^2.0.0",
-    "zeptojs": "^1.1.4"
+    "watchify": "^2.0.0"
+  },
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
+  },
+  "browser": {
+    "zeptojs": "./lib/zeptojs/zepto.js"
+  },
+  "browserify-shim": {
+    "zeptojs": {
+      "exports": "$"
+    }
   }
 }

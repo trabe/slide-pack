@@ -1,6 +1,9 @@
 hl = require 'highlight.js'
 $ = require 'zeptojs'
 
+$ ->
+  $('body').addClass('mobile') if $.os.phone || $.os.tablet
+
 processor = require './slide-pack-processor'
 ui = require './slide-pack-ui'
 require './slide-pack-navigation'

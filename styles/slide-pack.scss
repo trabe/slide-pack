@@ -61,4 +61,14 @@ nav {
   }
 }
 
+.mobile {
+  nav a {
+    width: 30vw;
+
+    &:hover {
+      opacity: 0;
+    }
+  }
+}
+
 @import './_print';
