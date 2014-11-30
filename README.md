@@ -106,6 +106,5 @@ SlidePackjavascript.
 ## TODO
 
 * Add inline slides editor
-* Fix mouse navigation (use left and right edges to navigate)
 * Use the example as documentation. Rename it or something
 * Add (optional) visual controls for navigation, page number, etc.

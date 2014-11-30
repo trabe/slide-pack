@@ -1,5 +1,5 @@
 @import '../node_modules/normalize.css/normalize.css';
-@import '../node_modules/highlight.js/styles/monokai_sublime.css';
+@import '../lib/highlightjs/styles/monokai_sublime.css';
 
 @import './themes/default/default.scss';
 
@@ -58,6 +58,16 @@ nav {
 
   a:first-child {
     left: 0;
+  }
+}
+
+.mobile {
+  nav a {
+    width: 30vw;
+
+    &:hover {
+      opacity: 0;
+    }
   }
 }
 

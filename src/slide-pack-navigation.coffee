@@ -16,3 +16,9 @@ $(document).on 'click', 'nav a:first-child', (e) ->
 
 $(document).on 'click', 'nav a:last-child', (e) ->
   ui.next()
+
+$(document).on 'swipeLeft', ->
+  ui.next()
+
+$(document).on 'swipeRight', ->
+  ui.prev()
