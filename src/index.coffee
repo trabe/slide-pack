@@ -1,4 +1,4 @@
-hl = require 'highlight.js'
+hl = require 'highlightjs'
 $ = require 'zeptojs'
 
 $ ->
