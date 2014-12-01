@@ -1,24 +1,24 @@
-ui = require './slide-pack-ui'
+api = require './slide-pack-api'
 mousetrap = require 'mousetrap'
 $ = require 'zeptojs'
 
 
 # keyboard navigation
-mousetrap.bind ['left', 'up', 'k', 'h'], ui.prev
-mousetrap.bind ['right', 'down', 'j', 'l'], ui.next
+mousetrap.bind ['left', 'up', 'k', 'h'], api.prev
+mousetrap.bind ['right', 'down', 'j', 'l'], api.next
 
 # mouse/touch navigation
 nav = $('<nav><a>←</a><a>→</a></nav>')
 $('body').append nav
 
 $(document).on 'click', 'nav a:first-child', (e) ->
-  ui.prev()
+  api.prev()
 
 $(document).on 'click', 'nav a:last-child', (e) ->
-  ui.next()
+  api.next()
 
 $(document).on 'swipeLeft', ->
-  ui.next()
+  api.next()
 
 $(document).on 'swipeRight', ->
-  ui.prev()
+  api.prev()

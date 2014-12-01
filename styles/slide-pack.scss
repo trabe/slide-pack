@@ -71,4 +71,24 @@ nav {
   }
 }
 
+progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 3px;
+  z-index: 100;
+  opacity: 0.3;
+
+  &[value]::-webkit-progress-bar {
+    background-color: $white;
+  }
+
+  &[value]::-webkit-progress-value {
+    background-color: $black;
+  }
+}
+
 @import './_print';
