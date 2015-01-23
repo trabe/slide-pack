@@ -5,8 +5,9 @@ $ ->
   $('body').addClass('mobile') if $.os.phone || $.os.tablet
 
 processor = require './slide-pack-processor'
-ui = require './slide-pack-ui'
+api = require './slide-pack-api'
 require './slide-pack-navigation'
+require './slide-pack-ui'
 
 executeHooks = ->
   if f = window._slide_pack_process_slides
@@ -35,6 +36,6 @@ $('[data-slide-pack]').each ->
 
   executeHooks()
 
-ui.init slidePack : $('article')
+api.init slidePack : $('article')
 
 hl.initHighlightingOnLoad()
