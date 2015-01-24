@@ -101,7 +101,25 @@ Sorry about that :)
 
 --
 
-# With syntax highlight support
+# HTML entities
+
+When in trouble (e.g.: you need to write the SlidePack wrapper closing tag
+in one of your slides code examples) **use HTML entities!**
+
+    <textarea data-slide-pack>
+
+    --
+
+    And this is some example code
+
+        <textarea>
+        &amp;lt;textarea>
+
+    &lt;/textarea>
+
+--
+
+# Syntax highlight support
 
 Using [highlight.js](https://highlightjs.org/) with the _monokai\_sublime_ theme
 
@@ -283,8 +301,42 @@ like this:
 
     <link rel="stylesheet" type="text/css" href="…">
 
+Or write some inline styles :)
+
+    <html>
+      <head>
+        &hellip;
+
+        <style>
+          .my-slide p {
+            background: red;
+          }
+          &hellip;
+        </style>
+
+        &hellip;
+
+--
+
+# Specificity
+
 If you have problems getting your styles to work,
 remember to check selector specificity!
+
+
+**HINT:** to increase your custom selectors specificity,
+just add an `id` attribute to the `html` tag:
+
+    <html id="cool-slides">
+      <head>
+        &hellip;
+
+        <style>
+          #cool-slides .section {
+          &hellip;
+          }
+
+          &hellip;
 
 --
 

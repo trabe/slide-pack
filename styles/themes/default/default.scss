@@ -57,11 +57,12 @@ html:not(.override) {
   }
 
   h1,h2,h3 {
-    font-family: "Ubuntu";
+    font-family: "Ubuntu", Verdana, sans-serif;
   }
 
   code {
     font-family: 'Menlo', 'Monaco', 'Consolas', monospace;
+    border-radius: 5px;
   }
 
   article {

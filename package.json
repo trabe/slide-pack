@@ -30,6 +30,7 @@
     "gulp-sass": "^1.2.0",
     "gulp-uglify": "^1.0.1",
     "gulp-util": "^3.0.1",
+    "gulp-zip": "^2.0.2",
     "marked": "^0.3.2",
     "mousetrap": "0.0.1",
     "normalize.css": "^3.0.2",
@@ -43,14 +44,14 @@
   },
   "browser": {
     "zeptojs": "./lib/zeptojs/zepto.js",
-    "highlightjs" : "./lib/highlightjs/highlight.pack.js"
+    "highlightjs": "./lib/highlightjs/highlight.pack.js"
   },
   "browserify-shim": {
     "zeptojs": {
-      "exports" : "$"
+      "exports": "$"
     },
-    "highlightjs" : {
-      "exports" : "hljs"
+    "highlightjs": {
+      "exports": "hljs"
     }
   }
 }
