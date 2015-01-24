@@ -16,6 +16,7 @@ uglify       = require 'gulp-uglify'
 rename       = require 'gulp-rename'
 minifyCss    = require 'gulp-minify-css'
 livereload   = require('gulp-livereload')
+zip          = require('gulp-zip')
 
 gulp.task 'lint', ->
   gulp.src 'src/*.coffee'
@@ -83,6 +84,15 @@ gulp.task 'minifycss', ->
     .pipe minifyCss()
     .pipe gulp.dest 'dist'
 
+gulp.task 'copy:templates', ->
+  gulp.src 'templates/*.html'
+    .pipe gulp.dest 'dist'
+
+gulp.task 'dist:zip', ['copy:templates'], ->
+  gulp.src 'dist/*'
+    .pipe(zip('slide-pack.zip'))
+    .pipe(gulp.dest 'dist')
+
 
 gulp.task 'build:js', ['clean:js'], -> bundleIt()
 
@@ -91,6 +101,8 @@ gulp.task 'build:js:watch', ['clean:js'], -> bundleIt(true)
 gulp.task 'minify', ['uglify', 'minifycss']
 
 gulp.task 'build', ['build:js', 'build:styles']
+
+gulp.task 'bundle', ['build', 'copy:templates', 'dist:zip']
 
 gulp.task 'clean', ['clean:js', 'clean:styles']
 
