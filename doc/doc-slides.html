@@ -301,8 +301,42 @@ like this:
 
     <link rel="stylesheet" type="text/css" href="…">
 
+Or write some inline styles :)
+
+    <html>
+      <head>
+        &hellip;
+
+        <style>
+          .my-slide p {
+            background: red;
+          }
+          &hellip;
+        </style>
+
+        &hellip;
+
+--
+
+# Specificity
+
 If you have problems getting your styles to work,
 remember to check selector specificity!
+
+
+**HINT:** to increase your custom selectors specificity,
+just add an `id` attribute to the `html` tag:
+
+    <html id="cool-slides">
+      <head>
+        &hellip;
+
+        <style>
+          #cool-slides .section {
+          &hellip;
+          }
+
+          &hellip;
 
 --
 
