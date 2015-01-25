@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SlidePack</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu:400,700,400italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="slide-pack.css">
+    <style>
+    @media screen {
+      .woods h1,
+      .woods h2,
+      .woods p {
+        color: #fff;
+        background: rgba(0, 0, 0, 0.6);
+      }
+
+      .woods code {
+        color: #000;
+      }
+    }
+
+    .woods p {
+      padding: 0.3em 0.5em;
+    }
+
+    #gh-link {
+      z-index: 100;
+      position: absolute;
+      background: #FFF;
+      border-radius: 0 0 5px 5px;
+      right: 40px;
+      padding: 0px 10px;
+      font-size: 0.65em;
+      box-shadow: 0 0 11px -1px #000;
+    }
+    </style>
+  </head>
+  <body>
+
+<textarea data-slide-pack>
+
+--
+
+# SlidePack
+
+## A really simple slides _generator_ &amp; _viewer_
+
+--
+
+# Simple
+
+* Write _markdown_ inside a single HTML template
+* Open the template in your browser
+* Done
+
+--
+
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css"
+          href="../dist/basic.css">
+      </head>
+      <body>
+
+    <pre data-slide-pack>
+    # Markdown here!
+    </pre>
+        <script src="../dist/bundle.js"></script>
+      </body>
+    </html>
+
+--
+
+# Defining slides
+
+1. Star each slide with `--`
+2. Write some markdown ([GFM](https://help.github.com/articles/github-flavored-markdown/) FTW!)
+3. Refresh your browser
+4. Done
+
+--
+
+# The markdown wrapper tag
+
+You can use any tag you like to wrap the markdown text (we used `pre` in the
+previous example)
+
+**BUT**
+
+if you are going to put some HTML code examples in there...
+
+you _will have_ to choose your tag wisely to avoid problems when writing
+_verbatim_ HTML (your examples) within _interpreted_ HTML (the page
+you are currently viewing)
+
+--
+
+# Suggested wrappers
+
+* `pre`
+* `textarea`
+* `xmp`
+
+There is no _silver-bullet-wrapper_: if you have to include a code block
+containing the wrapper, you are screwed.
+
+Sorry about that :)
+
+--
+
+# HTML entities
+
+When in trouble (e.g.: you need to write the SlidePack wrapper closing tag
+in one of your slides code examples) **use HTML entities!**
+
+    <textarea data-slide-pack>
+
+    --
+
+    And this is some example code
+
+        <textarea>
+        &amp;lt;textarea>
+
+    &lt;/textarea>
+
+--
+
+# Syntax highlight support
+
+Using [highlight.js](https://highlightjs.org/) with the _monokai\_sublime_ theme
+
+    /* lol */
+    function test() {
+      console.log("LOL!");
+    }
+
+--
+
+# Many languages, autodetected
+
+    # look ma', coffeescript!
+    sayHi = (name) -> alert "Hi #{name}!"
+
+    sayHi 'John'
+
+----
+
+    // Some Java too
+    public interface Loler {
+      void lol();
+    }
+
+----
+
+    # or Ruby
+    class Loler < Troll
+      def lol; puts "LOL"; end
+    end
+
+--
+
+# You can be explicit, too
+
+Use _fenced code blocks_ to delimit your code snippets and give them a
+language identifier:
+
+    ```javascript
+    function clickHandler() {
+      alert("Hello, World!");
+    }
+    ```
+
+--
+
+# Mobile-first
+
+* Looks OK in a mobile browser
+* Progressive enhancement FTW
+
+--
+
+# Sane font size defaults
+## More or less ^_^
+
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
+vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
+no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+-- section
+
+# SlidePack themes
+## A tale about defining some CSS classes
+
+--
+
+# SlidePack generates a very simple HTML structure
+
+* The whole pack is an `<article>`
+* Each slide is a `<section>` inside the `<article>`
+
+And that's it.
+
+--
+
+# _per-slide_ CSS classes
+
+To further customize your slides, you can apply any CSS
+class to any slide using a special syntax in the markdown
+source (_à la_ [cleaver](https://github.com/jdan/cleaver))
+
+    -- special awesome
+
+    My special, awesome slide
+    =========================
+
+    This slide will have *special* and *awesome* CSS classes
+    assigned
+
+    --
+
+    My normal, boring slide :(
+    ==========================
+
+
+--
+
+# Default classes
+
+SlidePack default theme uses some CSS classes and selectors
+to let you _tag_ some of your slides and display them in a
+specific way.
+
+|                               | class          | selector              |
+| :-----------                  | :-----         | :--------             |
+| first slide                   |                | `section:first-child` |
+| last slide                    |                | `section:last-child`  |
+| each section _"cover"_        | `.section`     |                       |
+| displays lists in two columns | `.two-columns` |                       |
+| removes bullets from lists    | `.no-bullet`   |                       |
+| for quoting someone           | `.quote`       |                       |
+| for a full-page image         | `.full-image`  |                       |
+
+-- two-columns no-bullet
+
+## This slide is `.two-columns` and `.no-bullet`
+
+* This is item # One
+* This is item # Two
+* This is item # Three
+* This is item # Four
+* This is item # Five
+
+--
+## _quote_ slides need special care
+
+
+If you want to add a `<cite>` element to your quote,
+you will have to use some HTML:
+
+```markdown
+-- quote
+
+> "This. Is. Blockquote!"
+> <cite>Some spartan</cite>
+```
+-- quote
+
+> "This. Is. Blockquote!"
+> <cite>Some spartan</cite>
+
+-- full-image woods
+
+![](img/unsplash2.jpg)
+
+# Full image background
+## Nice!
+
+This slide uses `.full-image` and some custom styling to increase
+legibility.
+
+<small>(Image by [Todd Quackenbush](http://500px.com/toddquackenbush))</small>
+
+-- full-image full-image-overlay
+
+![](img/unsplash1.jpg)
+
+# Image & overlay
+
+Adding `.full-image-overlay`, a (not so) subtle dark overlay over the original
+image, combined with a subtle text shadow, make the text _pop out_ with no need
+for custom styles.
+
+<small>(Image by [Jonas Nilsson Lee](https://unsplash.com/jonasnilssonlee))</small>
+
+-- section
+
+# Customization
+
+--
+
+# Custom styles
+
+SlidePack uses a default theme wich can be extended
+using your own stylesheet. Just add it to the HTML,
+like this:
+
+    <link rel="stylesheet" type="text/css" href="…">
+
+Or write some inline styles :)
+
+    <html>
+      <head>
+        &hellip;
+
+        <style>
+          .my-slide p {
+            background: red;
+          }
+          &hellip;
+        </style>
+
+        &hellip;
+
+--
+
+# Specificity
+
+If you have problems getting your styles to work,
+remember to check selector specificity!
+
+
+**HINT:** to increase your custom selectors specificity,
+just add an `id` attribute to the `html` tag:
+
+    <html id="cool-slides">
+      <head>
+        &hellip;
+
+        <style>
+          #cool-slides .section {
+          &hellip;
+          }
+
+          &hellip;
+
+--
+
+# Remember
+
+SlidePack is (almost) plain old HTML, so you can
+use inline styles, javascript,&hellip; whatever! :D
+
+--
+
+# Theme override
+
+The default SlidePack theme is constrained like this:
+
+    :not(.override) {
+    // theme styles here!
+    }
+
+So, you can disable it like this:
+
+    <!-- add "override" as a CSS class to the html tag -->
+    <html class="override">
+    …
+
+--
+
+# Total override
+
+You can even disable the whole SlidePack styles (careful with that axe, Eugene):
+
+    <!-- remove this link to the stylesheet and you are done! :D -->
+    <link rel="stylesheet" type="text/css" href="slide-pack.css">
+
+
+--
+
+# Power user
+
+Define a hook called `_slide_pack_process_slides` and
+process the slides as you see fit.  Remember to declare
+the hook before you insert the `slide-pack` Javascript file.
+
+    <script>
+    var _slide_pack_process_slides = function ($slides) {
+      // $slides is a Zepto.js wrapper containing all the slides
+      $slides.wrap('<div class="woodoo"></div>');
+    }
+    </script>
+    <script src="slide-pack.js"></script>
+
+-- section
+
+# Similar projects
+
+--
+
+# remark
+
+[remark](https://remarkjs.com) is SlidePack on steroids.
+It has support for:
+
+* Templates, layouts, property expansion
+* Content specific classes for styling
+* Presenter mode (cloning + notes + upcoming slide)
+
+--
+
+# Source code & issues
+
+For source code & issues, visit [https://github.com/trabe/slide-pack](https://github.com/trabe/slide-pack)
+
+--
+
+# That's it!
+
+## Thank you for watching ;)
+
+</textarea>
+    <a id="gh-link" href="http://github.com/trabe/slide-pack">visit project page</a>
+    <script src="slide-pack.js"></script>
+  </body>
+</html>
