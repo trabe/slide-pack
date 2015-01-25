@@ -88,11 +88,6 @@ gulp.task 'copy:templates', ->
   gulp.src 'templates/*.html'
     .pipe gulp.dest 'dist'
 
-gulp.task 'dist:zip', ['copy:templates'], ->
-  gulp.src 'dist/*'
-    .pipe(zip('slide-pack.zip'))
-    .pipe(gulp.dest 'dist')
-
 
 gulp.task 'build:js', ['clean:js'], -> bundleIt()
 
@@ -102,7 +97,10 @@ gulp.task 'minify', ['uglify', 'minifycss']
 
 gulp.task 'build', ['build:js', 'build:styles']
 
-gulp.task 'bundle', ['build', 'copy:templates', 'dist:zip']
+gulp.task 'bundle', ['build', 'copy:templates'], ->
+  gulp.src ['dist/*.js', 'dist/*.css', 'dist/*.html']
+    .pipe(zip('slide-pack.zip'))
+    .pipe(gulp.dest 'dist')
 
 gulp.task 'clean', ['clean:js', 'clean:styles']
 
