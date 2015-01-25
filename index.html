@@ -56,6 +56,26 @@
 
 --
 
+# Creating your slides
+
+1. Go to [the releases page](https://github.com/trabe/slide-pack/releases/) and download `slide-pack.zip`
+2. Unzip it
+3. Edit `template.html` (you can rename it to something more meaningful)
+4. Open it in a browser
+
+--
+
+# Recommended workflow
+
+* Install [live-server](https://www.npmjs.com/package/live-server) or something similar
+* Use it to serve the slides file (`template.html` by default)
+* Open the file in a browser
+* Edit your slides and save your changes. Live preview FTW!
+
+--
+
+# The basic template
+
     <!DOCTYPE html>
     <html>
       <head>
@@ -66,27 +86,18 @@
       </head>
       <body>
 
-    <pre data-slide-pack>
+    <textarea data-slide-pack>
     # Markdown here!
-    </pre>
+    &lt;/textarea>
         <script src="../dist/bundle.js"></script>
       </body>
     </html>
 
 --
 
-# Defining slides
-
-1. Star each slide with `--`
-2. Write some markdown ([GFM](https://help.github.com/articles/github-flavored-markdown/) FTW!)
-3. Refresh your browser
-4. Done
-
---
-
 # The markdown wrapper tag
 
-You can use any tag you like to wrap the markdown text (we used `pre` in the
+You can use any tag you like to wrap the markdown text (we used `textarea` in the
 previous example)
 
 **BUT**
@@ -101,32 +112,57 @@ you are currently viewing)
 
 # Suggested wrappers
 
-* `pre`
 * `textarea`
 * `xmp`
+* `pre`
 
 There is no _silver-bullet-wrapper_: if you have to include a code block
-containing the wrapper, you are screwed.
+containing the wrapper, you will have to use HTML entities to avoid
+closing the wrapper tag prematurely (see next slide).
 
 Sorry about that :)
 
 --
 
-# HTML entities
+# HTML entities (1)
 
 When in trouble (e.g.: you need to write the SlidePack wrapper closing tag
 in one of your slides code examples) **use HTML entities!**
 
-    <textarea data-slide-pack>
+```markdown
+<textarea data-slide-pack>
+--
+This is some example code containing the wrapper closing tag
 
-    --
+    <textarea>
+    &amp;lt;textarea>
 
-    And this is some example code
+&lt;/textarea>
+```
 
-        <textarea>
-        &amp;lt;textarea>
+--
 
-    &lt;/textarea>
+# HTML entities (2)
+
+Markdown automatically escapes HTML special characters so you
+can write them directly. It also lets you write HTML entities
+without double-escaping the &.
+
+So, if you need to show an HTML entity *verbatim* in one of your slides,
+you will have to double-escape it yourself:
+
+```markdown
+& is displayed as &
+&amp;amp; is displayed as &
+&amp;amp;amp; is displayed as &amp;amp;
+```
+
+--
+
+# Defining slides
+
+1. Star each slide with `--`
+2. Write some markdown ([GFM](https://help.github.com/articles/github-flavored-markdown/) FTW!)
 
 --
 
@@ -404,6 +440,19 @@ the hook before you insert the `slide-pack` Javascript file.
 
 --
 
+# cleaver
+
+[cleaver](http://jdan.github.io/cleaver/) is a node-powered
+markdown-to-html slides generator.
+
+* Pros
+    * Themes support
+    * Highly customizable
+* Cons
+    * Requires a "compilation" step
+
+--
+
 # remark
 
 [remark](https://remarkjs.com) is SlidePack on steroids.
@@ -424,6 +473,8 @@ For source code & issues, visit [https://github.com/trabe/slide-pack](https://gi
 # That's it!
 
 ## Thank you for watching ;)
+
+Remember to grab your SlidePack from [the releases page](https://github.com/trabe/slide-pack/releases/)!
 
 </textarea>
     <a id="gh-link" href="http://github.com/trabe/slide-pack">visit project page</a>
