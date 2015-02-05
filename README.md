@@ -14,7 +14,7 @@ no compilation, easy customization, F5-and-forget.
 
 ## How it works
 
-Once you download the [slide blueprint](), you can start editing the
+Once you download the [slide blueprint](https://github.com/trabe/slide-pack/releases/latest), you can start editing the
 markdown content. To view the slideshow, open the `.html` file
 using your favourite web browser.
 
