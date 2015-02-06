@@ -51,7 +51,7 @@ gulp.task 'reload', ->
 bundleIt = (watch = false) ->
   bundler = browserify
       # Required watchify args
-      cache: {}, packageCache: {}, fullPaths: true,
+      cache: {}, packageCache: {}, fullPaths: false,
       entries: ['./src/index.coffee'],
       extensions: ['.coffee'],
       debug: true,
