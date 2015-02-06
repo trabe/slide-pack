@@ -1,4 +1,5 @@
 SlidePack, a simple slides generator & viewer
+http://trabe.github.io/slide-pack/
 
 Copyright (C) 2014 Trabe Soluciones S.L.
 

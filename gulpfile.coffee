@@ -1,5 +1,6 @@
 gulp = require 'gulp'
 
+fs           = require 'fs'
 gutil        = require 'gulp-util'
 del          = require 'del'
 concat       = require 'gulp-concat'
@@ -15,8 +16,9 @@ autoprefixer = require 'gulp-autoprefixer'
 uglify       = require 'gulp-uglify'
 rename       = require 'gulp-rename'
 minifyCss    = require 'gulp-minify-css'
-livereload   = require('gulp-livereload')
-zip          = require('gulp-zip')
+livereload   = require 'gulp-livereload'
+zip          = require 'gulp-zip'
+insert       = require 'gulp-insert'
 
 gulp.task 'lint', ->
   gulp.src 'src/*.coffee'
@@ -72,13 +74,13 @@ gulp.task 'clean:js', ->
   del 'dist/*.js',
     force: true
 
-gulp.task 'uglify', ->
+gulp.task 'uglify', ['build'], ->
   gulp.src 'dist/*.js'
     .pipe rename suffix : '.min'
-    .pipe uglify()
+    .pipe uglify(preserveComments : 'some')
     .pipe gulp.dest 'dist'
 
-gulp.task 'minifycss', ->
+gulp.task 'minifycss', ['build'], ->
   gulp.src 'dist/*.css'
     .pipe rename suffix : '.min'
     .pipe minifyCss()
@@ -93,14 +95,23 @@ gulp.task 'build:js', ['clean:js'], -> bundleIt()
 
 gulp.task 'build:js:watch', ['clean:js'], -> bundleIt(true)
 
-gulp.task 'minify', ['uglify', 'minifycss']
+gulp.task 'minify', ['build', 'uglify', 'minifycss']
 
 gulp.task 'build', ['build:js', 'build:styles']
 
-gulp.task 'bundle', ['build', 'copy:templates'], ->
+gulp.task 'bundle', ['licensing', 'build', 'copy:templates'], ->
   gulp.src ['dist/*.js', 'dist/*.css', 'dist/*.html']
     .pipe(zip('slide-pack.zip'))
     .pipe(gulp.dest 'dist')
+
+gulp.task 'licensing', ['minify'], ->
+  license = fs.readFileSync('LICENSE.txt', encoding : 'utf8')
+
+  gulp.src ['dist/*.js', 'dist/*.css']
+    .pipe(insert.prepend( "/*!\n#{license}\n*/\n"))
+    .pipe(gulp.dest 'dist')
+
+gulp.task 'dist', ['bundle', 'minify']
 
 gulp.task 'clean', ['clean:js', 'clean:styles']
 
