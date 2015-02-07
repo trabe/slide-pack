@@ -1,3 +1,28 @@
+/*!
+SlidePack, a simple slides generator & viewer
+http://trabe.github.io/slide-pack/
+
+Copyright (C) 2014 Trabe Soluciones S.L.
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the "Software"),
+to deal in the Software without restriction, including without limitation
+the rights to use, copy, modify, merge, publish, distribute, sublicense,
+and/or sell copies of the Software, and to permit persons to whom the
+Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included
+in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
+OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+*/
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 
 /**
@@ -686,18 +711,15 @@ html:not(.override) {
 }
 
 :not(.override) section {
-  display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   -webkit-flex-flow: column;
       -ms-flex-flow: column;
           flex-flow: column;
-  -webkit-box-align: center;
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: center;
   -webkit-justify-content: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -975,7 +997,7 @@ html:not(.override) {
 :not(.override) table th,
 :not(.override) table td {
   line-height: 1.4em;
-  padding: 0.2em 0.5em;
+  padding: .2em .5em;
 }
 
 :not(.override) table thead tr:last-child th {
@@ -1028,13 +1050,12 @@ nav a {
   cursor: pointer;
   text-align: center;
   opacity: 0;
-  -webkit-transition: opacity 0.5s ease-in;
-          transition: opacity 0.5s ease-in;
+  transition: opacity .5s ease-in;
   right: 0;
 }
 
 nav a:hover {
-  opacity: 0.7;
+  opacity: .7;
 }
 
 nav a:active {
