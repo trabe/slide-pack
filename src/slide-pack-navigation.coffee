@@ -4,8 +4,8 @@ $ = require 'zeptojs'
 
 
 # keyboard navigation
-mousetrap.bind ['left', 'up', 'k', 'h'], api.prev
-mousetrap.bind ['right', 'down', 'j', 'l'], api.next
+mousetrap.bind ['left', 'up', 'k', 'h', 'pageup'], api.prev
+mousetrap.bind ['right', 'down', 'j', 'l', 'pagedown'], api.next
 
 # mouse/touch navigation
 nav = $('<nav><a>←</a><a>→</a></nav>')
